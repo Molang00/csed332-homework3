@@ -85,6 +85,7 @@ public class ParentPointerTree<N extends Comparable<N>> implements MutableTree<N
         // TODO: implement this
         if(root == null){
             nodeMap.put(vertex, new Node<N>(null, 0));
+            root = vertex;
             return true;
         }
         return false;
@@ -94,10 +95,11 @@ public class ParentPointerTree<N extends Comparable<N>> implements MutableTree<N
     public boolean removeVertex(@NotNull N vertex) {
         // TODO: implement this
         Set<N> children = new HashSet<N>();
-        if(!this.containsVertex(vertex)) return false;
+        if(!this.containsVertex(vertex)){
+            return false;
+        }
         for(N node : nodeMap.keySet()){
-            Node<N> nodeValue = nodeMap.get(node);
-            if(nodeValue.parent == vertex) children.add(node);
+            if(node != root && this.getParent(node).get() == vertex) children.add(node);
         }
         for(N child : children) this.removeEdge(vertex, child);
         nodeMap.remove(vertex);
@@ -107,8 +109,7 @@ public class ParentPointerTree<N extends Comparable<N>> implements MutableTree<N
     @Override
     public boolean containsEdge(@NotNull N source, @NotNull N target) {
         // TODO: implement this
-        N src = nodeMap.get(target).parent;
-        if(source == src) return true;
+        if(this.containsVertex(target) && source == this.getParent(target).get()) return true;
         else return false;
     }
 
@@ -126,16 +127,13 @@ public class ParentPointerTree<N extends Comparable<N>> implements MutableTree<N
         // TODO: implement this
         if(!nodeMap.containsKey(source)) return false;
         if(!nodeMap.containsKey(target)) return false;
-        if(this.containsEdge(source, target)){
-            Set<N> targets = this.getTargets(target);
-            for(N trg : targets){
-                this.removeVertex(trg);
-            }
-            nodeMap.remove(target);
-            return true;
+        Set<N> targets = this.getChildren(target);
+        for(N trg : targets){
+            this.removeVertex(trg);
         }
-        return false;
-    }
+        this.removeVertex(target);
+        return true;
+}
 
     @Override
     public @NotNull Set<N> getSources(N target) {
@@ -181,7 +179,21 @@ public class ParentPointerTree<N extends Comparable<N>> implements MutableTree<N
      */
     boolean checkInv() {
         // TODO: implement this
-        return false;
+        List<N> vertices = new ArrayList<N>(getVertices());
+        List<Boolean> visitCheckers = new ArrayList<Boolean>();
+        for(Integer i = 0; i < vertices.size(); i++) visitCheckers.add(false);
+        for(Integer i = 0 ;i < vertices.size(); i++){
+            N vertex = vertices.get(i);
+            List<N> targets = new ArrayList<N>(getTargets(vertex));
+            for(N trg : targets){
+                if(!vertices.contains(trg)) return false;
+            }
+            if(visitCheckers.get(i)) return false;
+            else visitCheckers.set(i, true);
+        }
+        
+        for(Integer i = 0; i < vertices.size(); i++) if(!visitCheckers.get(i)) return false;
+        return true;
     }
 
     /**

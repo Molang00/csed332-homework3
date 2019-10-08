@@ -48,7 +48,6 @@ public class DelegateTree<N extends Comparable<N>> implements MutableTree<N> {
     public @NotNull Optional<N> getRoot() {
         // TODO: implement this
         if(delegate.getVertices().isEmpty()) return Optional.empty();
-        else if(root == null) return Optional.empty();
         else{
             @NotNull Optional<N> rst = Optional.of(root);
             return rst;
@@ -95,11 +94,10 @@ public class DelegateTree<N extends Comparable<N>> implements MutableTree<N> {
     public boolean removeVertex(@NotNull N vertex) {
         // TODO: implement this
         Set<N> children = delegate.getTargets(vertex);
-        
-        for(N child : children){
-            this.removeEdge(vertex, child);
-        }
         if(delegate.removeVertex(vertex)){
+            for(N child : children){
+                this.removeEdge(vertex, child);
+            }
             depthMap.remove(vertex);
             return true;
         }
@@ -117,21 +115,20 @@ public class DelegateTree<N extends Comparable<N>> implements MutableTree<N> {
         // TODO: implement this
         if(!delegate.containsVertex(source)) return false;
         if(delegate.containsVertex(target)) return false;
-        if(delegate.addEdge(source, target)){
-            depthMap.put(target, depthMap.get(source)+1);
-            return true;
-        }
-        return false;
+        delegate.addEdge(source, target);
+        depthMap.put(target, depthMap.get(source)+1);
+        return true;
     }
 
     @Override
     public boolean removeEdge(@NotNull N source, @NotNull N target) {
         // TODO: implement this
         Set<N> children = delegate.getTargets(target);
-        for(N child : children){
-            this.removeEdge(target, child);
-        }
-        if(delegate.removeEdge(source, target)){
+        Set<N> sources = this.getSources(target);
+        if(containsEdge(source, target) && delegate.removeEdge(source, target)){
+            for(N child : children){
+                this.removeEdge(target, child);
+            }
             return this.removeVertex(target);
         }
         return false;
@@ -169,9 +166,8 @@ public class DelegateTree<N extends Comparable<N>> implements MutableTree<N> {
     boolean checkInv() {
         // TODO: implement this
         List<N> vertices = new ArrayList<N>(getVertices());
-        List<Boolean> visitCheckers = new ArrayList<Boolean>(vertices.size());
-        for(Integer i = 0; i < vertices.size(); i++) visitCheckers.set(i, false);
-        System.out.println(vertices.size());
+        List<Boolean> visitCheckers = new ArrayList<Boolean>();
+        for(Integer i = 0; i < vertices.size(); i++) visitCheckers.add(false);
         for(Integer i = 0; i < vertices.size(); i++){
             N vertex = vertices.get(i);
             List<N> targets = new ArrayList<N>(getTargets(vertex));

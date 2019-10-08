@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.postech.csed332.homework3.StringAdjacencyMutableGraphTest" time="0.005" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.postech.csed332.homework3.StringAdjacencyMutableGraphTest" time="0.004" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="KR"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-11.0.4\bin"/>
-    <property name="sun.java.command" value="C:\Users\molang\AppData\Local\Temp\surefire12076869149708936682\surefirebooter7118408464949738539.jar C:\Users\molang\AppData\Local\Temp\surefire12076869149708936682 2019-10-08T21-58-50_091-jvmRun1 surefire13100628614399627914tmp surefire_038449148138034721tmp"/>
+    <property name="sun.java.command" value="C:\Users\molang\AppData\Local\Temp\surefire8610439915294017678\surefirebooter14934125954874223367.jar C:\Users\molang\AppData\Local\Temp\surefire8610439915294017678 2019-10-08T23-57-23_247-jvmRun1 surefire1495352392648488281tmp surefire_017138510059089867630tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="E:\POSTECH\Semesters\2019-2\CSED332\homework3\target\test-classes;E:\POSTECH\Semesters\2019-2\CSED332\homework3\target\classes;C:\Users\molang\.m2\repository\org\jetbrains\annotations\17.0.0\annotations-17.0.0.jar;C:\Users\molang\.m2\repository\org\junit\jupiter\junit-jupiter\5.5.2\junit-jupiter-5.5.2.jar;C:\Users\molang\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.5.2\junit-jupiter-api-5.5.2.jar;C:\Users\molang\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\molang\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\molang\.m2\repository\org\junit\platform\junit-platform-commons\1.5.2\junit-platform-commons-1.5.2.jar;C:\Users\molang\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.5.2\junit-jupiter-params-5.5.2.jar;C:\Users\molang\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.5.2\junit-jupiter-engine-5.5.2.jar;C:\Users\molang\.m2\repository\org\junit\platform\junit-platform-engine\1.5.2\junit-platform-engine-1.5.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -33,7 +33,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\molang\AppData\Local\Temp\surefire12076869149708936682\surefirebooter7118408464949738539.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\molang\AppData\Local\Temp\surefire8610439915294017678\surefirebooter14934125954874223367.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.4+10-LTS"/>
@@ -60,7 +60,14 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
+  <testcase name="testGetSources" classname="edu.postech.csed332.homework3.StringAdjacencyMutableGraphTest" time="0"/>
   <testcase name="testAddDuplicateVertices" classname="edu.postech.csed332.homework3.StringAdjacencyMutableGraphTest" time="0"/>
+  <testcase name="testAddEdge" classname="edu.postech.csed332.homework3.StringAdjacencyMutableGraphTest" time="0"/>
+  <testcase name="testToString" classname="edu.postech.csed332.homework3.StringAdjacencyMutableGraphTest" time="0"/>
+  <testcase name="testRemoveRemovedVertex" classname="edu.postech.csed332.homework3.StringAdjacencyMutableGraphTest" time="0"/>
+  <testcase name="testRemoveVertices" classname="edu.postech.csed332.homework3.StringAdjacencyMutableGraphTest" time="0"/>
+  <testcase name="testLookupRemovedVertex" classname="edu.postech.csed332.homework3.StringAdjacencyMutableGraphTest" time="0"/>
+  <testcase name="testRemoveEdge" classname="edu.postech.csed332.homework3.StringAdjacencyMutableGraphTest" time="0"/>
   <testcase name="testAddVertex" classname="edu.postech.csed332.homework3.StringAdjacencyMutableGraphTest" time="0"/>
   <testcase name="testFindReachableVertices" classname="edu.postech.csed332.homework3.StringAdjacencyMutableGraphTest" time="0"/>
 </testsuite>

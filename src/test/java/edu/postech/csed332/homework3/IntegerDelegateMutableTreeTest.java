@@ -21,11 +21,16 @@ public class IntegerDelegateMutableTreeTest extends AbstractMutableTreeTest<Inte
 
     @Override
     boolean checkInv() {
-        System.out.println("checkInv");
         return tree.checkInv();
     }
 
     // TODO: write more white-box test cases to achieve more code coverage, if needed.
     // You do not need to add more test methods, if you tests already meet the desired coverage.
 
+    @Test
+    void testToString() {
+        Assertions.assertTrue(tree.addVertex(v1));
+        Assertions.assertTrue(tree.addEdge(v1, v2));
+        Assertions.assertEquals(tree.toString(), "[root: 1, vertex: {1, 2}, edge: {(1,2)}]");
+    }
 }

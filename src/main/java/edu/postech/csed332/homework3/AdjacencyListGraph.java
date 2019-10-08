@@ -48,9 +48,9 @@ public class AdjacencyListGraph<N extends Comparable<N>> implements MutableGraph
     public boolean removeVertex(@NotNull N vertex) {
         // TODO: implement this
         if(containsVertex(vertex)){
-            Set<Edge<N>> edges = this.getEdges();
-            for(Edge<N> edge : edges){
-                if(edge.getTarget() == vertex) this.removeEdge(edge.getSource(), edge.getTarget());
+            Set<N> sources = this.getSources(vertex);
+            for(N source : sources){
+                this.removeEdge(source, vertex);
             }
             adjMap.remove(vertex);
             return true;

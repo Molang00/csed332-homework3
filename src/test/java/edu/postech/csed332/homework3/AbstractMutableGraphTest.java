@@ -56,5 +56,64 @@ public abstract class AbstractMutableGraphTest<V extends Comparable<V>, G extend
 
     // TODO: write black-box test cases for each method of MutableGraph with respect to
     //  the specification, including the methods of Graph that MutableGraph extends.
+    @Test
+    void testRemoveVertices(){
+        Assertions.assertTrue(graph.addVertex(v1));
+        Assertions.assertTrue(graph.addEdge(v1, v2));
+        Assertions.assertTrue(graph.addEdge(v2, v3));
+        Assertions.assertTrue(graph.removeVertex(v2));
+        Assertions.assertTrue(checkInv());
+    }
 
+    @Test
+    void testLookupRemovedVertex(){
+        Assertions.assertTrue(graph.addVertex(v1));
+        Assertions.assertTrue(graph.addEdge(v1, v2));
+        Assertions.assertTrue(graph.addEdge(v2, v3));
+        Assertions.assertTrue(graph.removeVertex(v2));
+        Assertions.assertFalse(graph.containsVertex(v2));
+        Assertions.assertTrue(checkInv());
+    }
+    
+    @Test
+    void testRemoveRemovedVertex(){
+        Assertions.assertTrue(graph.addVertex(v1));
+        Assertions.assertTrue(graph.addEdge(v1, v2));
+        Assertions.assertTrue(graph.addEdge(v2, v3));
+        Assertions.assertTrue(graph.removeVertex(v2));
+        Assertions.assertFalse(graph.removeVertex(v2));
+        Assertions.assertTrue(checkInv());
+    }
+    
+    @Test
+    void testGetSources(){
+        Assertions.assertTrue(graph.addVertex(v1));
+        Assertions.assertTrue(graph.addEdge(v1, v2));
+        Assertions.assertTrue(graph.addEdge(v2, v3));
+        Assertions.assertTrue(graph.removeVertex(v2));
+        Assertions.assertFalse(graph.removeVertex(v2));
+        Assertions.assertTrue(checkInv());
+    }
+    
+    @Test
+    void testToString(){
+        graph.addVertex(v1);
+        graph.addEdge(v1, v2);
+        Assertions.assertEquals(graph.toString(), "[vertex: {1, 2}, edge: {(1,2)}]");
+    }
+    
+    @Test
+    void testRemoveEdge(){
+        graph.addVertex(v1);
+        graph.addEdge(v1, v2);
+        Assertions.assertTrue(graph.removeEdge(v1, v2));
+        Assertions.assertFalse(graph.removeEdge(v1, v2));
+    }
+    
+    @Test
+    void testAddEdge(){
+        graph.addVertex(v1);
+        Assertions.assertTrue(graph.addEdge(v1, v2));
+        Assertions.assertFalse(graph.addEdge(v1, v2));
+    }
 }

@@ -48,7 +48,7 @@ public interface Tree&lt;N extends Comparable&lt;N&gt;&gt; extends Graph&lt;N&gt
      * @return the set of children of vertex in the tree
      */
     default @NotNull Set&lt;N&gt; getChildren(@NotNull N vertex) {
-<span class="nc" id="L51">        return getTargets(vertex);</span>
+<span class="fc" id="L51">        return getTargets(vertex);</span>
     }
 
     /**
@@ -59,7 +59,7 @@ public interface Tree&lt;N extends Comparable&lt;N&gt;&gt; extends Graph&lt;N&gt
      * @return the parent of vertex, or {@code Optional.empty()} if vertex is the root
      */
     default @NotNull Optional&lt;N&gt; getParent(N vertex) {
-<span class="nc" id="L62">        return getSources(vertex).stream().findAny();</span>
+<span class="fc" id="L62">        return getSources(vertex).stream().findAny();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

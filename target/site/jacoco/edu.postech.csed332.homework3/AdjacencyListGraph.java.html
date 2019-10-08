@@ -47,15 +47,15 @@ public class AdjacencyListGraph&lt;N extends Comparable&lt;N&gt;&gt; implements 
     @Override
     public boolean removeVertex(@NotNull N vertex) {
         // TODO: implement this
-<span class="nc bnc" id="L50" title="All 2 branches missed.">        if(containsVertex(vertex)){</span>
-<span class="nc" id="L51">            Set&lt;Edge&lt;N&gt;&gt; edges = this.getEdges();</span>
-<span class="nc bnc" id="L52" title="All 2 branches missed.">            for(Edge&lt;N&gt; edge : edges){</span>
-<span class="nc bnc" id="L53" title="All 2 branches missed.">                if(edge.getTarget() == vertex) this.removeEdge(edge.getSource(), edge.getTarget());</span>
-<span class="nc" id="L54">            }</span>
-<span class="nc" id="L55">            adjMap.remove(vertex);</span>
-<span class="nc" id="L56">            return true;</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if(containsVertex(vertex)){</span>
+<span class="fc" id="L51">            Set&lt;N&gt; sources = this.getSources(vertex);</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            for(N source : sources){</span>
+<span class="fc" id="L53">                this.removeEdge(source, vertex);</span>
+            }
+<span class="fc" id="L55">            adjMap.remove(vertex);</span>
+<span class="fc" id="L56">            return true;</span>
         }
-<span class="nc" id="L58">        else return false;</span>
+<span class="fc" id="L58">        else return false;</span>
     }
 
     @Override
@@ -64,15 +64,15 @@ public class AdjacencyListGraph&lt;N extends Comparable&lt;N&gt;&gt; implements 
 <span class="fc" id="L64">        SortedSet&lt;N&gt; targets = adjMap.get(source);</span>
 <span class="fc bfc" id="L65" title="All 2 branches covered.">        if(targets == null) return false;</span>
 <span class="fc bfc" id="L66" title="All 2 branches covered.">        for(N trg: targets){</span>
-<span class="pc bpc" id="L67" title="1 of 2 branches missed.">            if(target == trg) return true;</span>
-<span class="fc" id="L68">        }</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">            if(target == trg) return true;</span>
+        }
 <span class="fc" id="L69">        return false;</span>
     }
 
     @Override
     public boolean addEdge(@NotNull N source, @NotNull N target) {
         // TODO: implement this
-<span class="pc bpc" id="L75" title="1 of 2 branches missed.">        if(containsEdge(source, target)) return false;</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if(containsEdge(source, target)) return false;</span>
         else {
 <span class="fc bfc" id="L77" title="All 2 branches covered.">            if(!containsVertex(source)) addVertex(source);</span>
 <span class="fc bfc" id="L78" title="All 2 branches covered.">            if(!containsVertex(target)) addVertex(target);</span>
@@ -86,30 +86,30 @@ public class AdjacencyListGraph&lt;N extends Comparable&lt;N&gt;&gt; implements 
     @Override
     public boolean removeEdge(@NotNull N source, @NotNull N target) {
         // TODO: implement this
-<span class="nc bnc" id="L89" title="All 2 branches missed.">        if(containsEdge(source, target)){</span>
-<span class="nc" id="L90">            SortedSet&lt;N&gt; targets = adjMap.get(source);</span>
-<span class="nc" id="L91">            targets.remove(target);</span>
-<span class="nc" id="L92">            adjMap.put(source, targets);</span>
-<span class="nc" id="L93">            return true;</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        if(containsEdge(source, target)){</span>
+<span class="fc" id="L90">            SortedSet&lt;N&gt; targets = adjMap.get(source);</span>
+<span class="fc" id="L91">            targets.remove(target);</span>
+<span class="fc" id="L92">            adjMap.put(source, targets);</span>
+<span class="fc" id="L93">            return true;</span>
         }
-<span class="nc" id="L95">        return false;</span>
+<span class="fc" id="L95">        return false;</span>
     }
 
     @Override
     public @NotNull Set&lt;N&gt; getSources(N target) {
         // TODO: implement this
-<span class="nc" id="L101">        Set&lt;N&gt; vertices = getVertices();</span>
-<span class="nc" id="L102">        Set&lt;N&gt; sources = new HashSet&lt;N&gt;();</span>
-<span class="nc bnc" id="L103" title="All 2 branches missed.">        for(N vertex : vertices){</span>
-<span class="nc" id="L104">            Set&lt;N&gt; targets = getTargets(vertex);</span>
-<span class="nc bnc" id="L105" title="All 2 branches missed.">            for(N trg : targets){</span>
-<span class="nc bnc" id="L106" title="All 2 branches missed.">                if(trg == target){</span>
-<span class="nc" id="L107">                    sources.add(vertex);</span>
-<span class="nc" id="L108">                    break;</span>
+<span class="fc" id="L101">        Set&lt;N&gt; vertices = getVertices();</span>
+<span class="fc" id="L102">        Set&lt;N&gt; sources = new HashSet&lt;N&gt;();</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">        for(N vertex : vertices){</span>
+<span class="fc" id="L104">            Set&lt;N&gt; targets = getTargets(vertex);</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">            for(N trg : targets){</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">                if(trg == target){</span>
+<span class="fc" id="L107">                    sources.add(vertex);</span>
+<span class="fc" id="L108">                    break;</span>
                 }
-<span class="nc" id="L110">            }</span>
-<span class="nc" id="L111">        }</span>
-<span class="nc" id="L112">        return sources;</span>
+            }
+        }
+<span class="fc" id="L112">        return sources;</span>
     }
 
     @Override
@@ -125,9 +125,9 @@ public class AdjacencyListGraph&lt;N extends Comparable&lt;N&gt;&gt; implements 
 
     @Override
     public @NotNull Set&lt;Edge&lt;N&gt;&gt; getEdges() {
-<span class="nc" id="L128">        return adjMap.entrySet().stream()</span>
-<span class="nc" id="L129">                .flatMap(entry -&gt; entry.getValue().stream().map(n -&gt; new Edge&lt;&gt;(entry.getKey(), n)))</span>
-<span class="nc" id="L130">                .collect(Collectors.toUnmodifiableSet());</span>
+<span class="fc" id="L128">        return adjMap.entrySet().stream()</span>
+<span class="fc" id="L129">                .flatMap(entry -&gt; entry.getValue().stream().map(n -&gt; new Edge&lt;&gt;(entry.getKey(), n)))</span>
+<span class="fc" id="L130">                .collect(Collectors.toUnmodifiableSet());</span>
     }
 
     /**
@@ -142,8 +142,8 @@ public class AdjacencyListGraph&lt;N extends Comparable&lt;N&gt;&gt; implements 
 <span class="fc" id="L142">            Set&lt;N&gt; targets = getTargets(vertex);</span>
 <span class="fc bfc" id="L143" title="All 2 branches covered.">            for(N trg : targets){</span>
 <span class="pc bpc" id="L144" title="1 of 2 branches missed.">                if(!vertices.contains(trg)) return false;</span>
-<span class="fc" id="L145">            }</span>
-<span class="fc" id="L146">        }</span>
+            }
+        }
 <span class="fc" id="L147">        return true;</span>
     }
 
@@ -154,9 +154,9 @@ public class AdjacencyListGraph&lt;N extends Comparable&lt;N&gt;&gt; implements 
      */
     @Override
     public String toString() {
-<span class="nc" id="L157">        return String.format(&quot;[vertex: {%s}, edge: {%s}]&quot;,</span>
-<span class="nc" id="L158">                getVertices().stream().map(N::toString).collect(Collectors.joining(&quot;, &quot;)),</span>
-<span class="nc" id="L159">                getEdges().stream().map(Edge::toString).collect(Collectors.joining(&quot;, &quot;)));</span>
+<span class="fc" id="L157">        return String.format(&quot;[vertex: {%s}, edge: {%s}]&quot;,</span>
+<span class="fc" id="L158">                getVertices().stream().map(N::toString).collect(Collectors.joining(&quot;, &quot;)),</span>
+<span class="fc" id="L159">                getEdges().stream().map(Edge::toString).collect(Collectors.joining(&quot;, &quot;)));</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
