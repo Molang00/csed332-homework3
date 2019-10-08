@@ -36,7 +36,7 @@ public class DelegateTree<N extends Comparable<N>> implements MutableTree<N> {
      * @param emptyGraph an empty graph
      * @throws IllegalArgumentException if {@code emptyGraph} is not empty
      */
-    public DelegateTree(@NotNull MutableGraph<N> emptyGraph) {
+    public DelegateTree(@NotNull MutableGraph<N> emptyGraph) throws IllegalArgumentException {
         if (!emptyGraph.getVertices().isEmpty())
             throw new IllegalArgumentException();
 
